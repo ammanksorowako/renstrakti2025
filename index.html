@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Infografis Proyek KTI - SMP YPS SINGKOLE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <!--
+    PLANNING SUMMARY:
+    Narrative & Structure: The infographic tells a chronological story of the KTI project. It starts with a high-level overview, then breaks down each phase, highlights the unique "Kemah Ilmiah" events, outlines the success factors, and concludes with the final goal. This structure guides the user from the big picture to specific details in a logical flow.
+
+    Visualization Choices (NO SVG, NO MERMAID JS):
+    1.  Project Overview (Single Big Numbers): Goal=Inform. Chosen Visualization=Large Text. Justification=Immediately conveys the project's scale (7 months, 1 final paper) for a strong hook. Implemented via styled HTML.
+    2.  Project Timeline (Flow Chart): Goal=Organize/Change. Chosen Visualization=Styled HTML Flowchart. Justification=Clearly shows the step-by-step progression of the project, which is the core narrative. Implemented with Flexbox and styled divs to avoid SVG/Mermaid.
+    3.  Phase 1 & 2 Breakdowns (Donut Charts): Goal=Compare/Inform. Chosen Visualization=Donut Chart. Justification=Visually represents the composition and focus of each phase (e.g., proposal writing vs. research), making it more digestible than a simple list. Implemented with Chart.js Canvas.
+    4.  Kemah Ilmiah Spotlights (Iconography & Lists): Goal=Organize/Inform. Chosen Visualization=Unicode Icons and styled lists. Justification=Effectively communicates the core principles (Mindful, Meaningful, Joyful) in a visually engaging way without using image files or SVG. Implemented with HTML.
+    5.  Key Success Factors (Bar Chart): Goal=Compare/Organize. Chosen Visualization=Horizontal Bar Chart. Justification=Transforms a standard bullet list into a compelling data visualization, allowing for easy comparison and ranking of foundational elements. Implemented with Chart.js Canvas.
+    -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (max-width: 768px) {
+            .chart-container {
+                height: 300px;
+                max-height: 350px;
+            }
+        }
+        summary {
+            cursor: pointer;
+            list-style: none;
+        }
+        summary::-webkit-details-marker {
+            display: none;
+        }
+        details[open] summary ~ * {
+            animation: sweep .5s ease-in-out;
+        }
+        @keyframes sweep {
+            0% {opacity: 0; transform: translateY(-10px)}
+            100% {opacity: 1; transform: translateY(0)}
+        }
+        .rundown-table th, .rundown-table td {
+            border: 1px solid #e2e8f0;
+            padding: 8px;
+            text-align: left;
+        }
+        .rundown-table th {
+            background-color: #f1f5f9;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+    <header class="bg-[#003f5c] text-white p-8 text-center">
+        <img src="https://i.imgur.com/iI50qFr.png" alt="Logo SMP YPS SINGKOLE" class="h-24 w-auto mx-auto mb-4">
+        <h1 class="text-4xl font-bold mb-2">Proyek Karya Tulis Ilmiah</h1>
+        <p class="text-xl font-light">SMP YPS SINGKOLE T.P. 2025/2026</p>
+    </header>
+
+    <main class="container mx-auto p-4 md:p-8">
+
+        <section id="hook" class="text-center mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-6xl font-black text-[#ff6361]">7</p>
+                    <p class="text-xl font-semibold">Bulan Perjalanan</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md flex flex-col justify-center">
+                     <p class="text-4xl font-black text-[#58508d]">Mengubah Siswa Menjadi Peneliti Muda</p>
+                </div>
+                <div class="bg-white p-6 rounded-lg shadow-md">
+                    <p class="text-6xl font-black text-[#ffa600]">1</p>
+                    <p class="text-xl font-semibold">Karya Tulis Ilmiah Final</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-12">
+            <h2 class="text-3xl font-bold text-center mb-8 text-[#003f5c]">Alur Proyek: Dari Ide Hingga Karya</h2>
+            <div class="bg-white p-6 rounded-lg shadow-md">
+                 <div class="flex flex-col md:flex-row justify-between items-center text-center">
+                    <div class="flex-1 p-3">
+                        <div class="p-4 bg-blue-100 border-2 border-[#58508d] rounded-lg">
+                            <p class="font-bold">Tahap 1</p>
+                            <p class="text-sm">Okt - Des 2025</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-auto h-12 md:h-auto md:flex-1 flex justify-center items-center">
+                         <div class="w-1 h-full md:w-full md:h-1 bg-[#bc5090]"></div>
+                    </div>
+                    <div class="flex-1 p-3">
+                        <div class="p-4 bg-orange-100 border-2 border-[#ff6361] rounded-lg">
+                            <p class="font-bold">Tahap 2</p>
+                            <p class="text-sm">Jan - Apr 2026</p>
+                        </div>
+                    </div>
+                 </div>
+            </div>
+        </section>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+            <div id="phase-1" class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold mb-4 text-[#58508d]">Tahap 1: Perencanaan & Proposal</h3>
+                <p class="mb-4">Fase ini berfokus pada pembekalan dasar hingga penyusunan proposal yang solid. Aktivitas utamanya meliputi:</p>
+                <ul class="space-y-2 mb-4 text-gray-700">
+                    <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><b>Penajaman Topik & Penyusunan Bab I</b></span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><b>Studi Pustaka & Penyusunan Bab II</b></span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><b>Perancangan Metodologi & Bab III</b></span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><b>Seminar Proposal & Finalisasi Instrumen</b></span></li>
+                </ul>
+                <div class="chart-container">
+                    <canvas id="phase1Chart"></canvas>
+                </div>
+            </div>
+            
+            <div id="kemah-1" class="bg-white p-6 rounded-lg shadow-md flex flex-col">
+                <h3 class="text-2xl font-bold mb-4 text-[#bc5090]">Sorotan: Kemah Ilmiah I</h3>
+                <p class="mb-4">"Percikan Ide, Nyalakan Asa Peneliti Muda" - sebuah bootcamp untuk memantik rasa ingin tahu dan membangun fondasi penelitian.</p>
+                <div class="space-y-3 mb-4">
+                    <div class="flex items-start"><span class="text-3xl mr-3">🧘</span><div><h4 class="font-semibold">Berkesadaran (Mindful)</h4><p class="text-sm">Menggali rasa penasaran dari dalam diri.</p></div></div>
+                    <div class="flex items-start"><span class="text-3xl mr-3">🤝</span><div><h4 class="font-semibold">Bermakna (Meaningful)</h4><p class="text-sm">Mengubah masalah menjadi pertanyaan penelitian.</p></div></div>
+                    <div class="flex items-start"><span class="text-3xl mr-3">✨</span><div><h4 class="font-semibold">Menggembirakan (Joyful)</h4><p class="text-sm">Belajar dan berbagi ide dengan cara yang seru.</p></div></div>
+                </div>
+                <details class="mt-auto">
+                    <summary class="inline-block bg-[#bc5090] text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors w-full text-center">
+                        Lihat Rundown Rinci
+                    </summary>
+                    <div class="mt-4 overflow-x-auto">
+                        <table class="w-full text-sm rundown-table">
+                            <thead><tr><th>Waktu</th><th>Aktivitas</th></tr></thead>
+                            <tbody>
+                                <tr><td colspan="2" class="font-bold bg-gray-50">JUMAT</td></tr>
+                                <tr><td>19:30-21:00</td><td>Sesi Inspirasi: "Apinya Peneliti"</td></tr>
+                                <tr><td>21:00-21:30</td><td>Jurnal Malam: "Apa yang Membuatku Penasaran?"</td></tr>
+                                <tr><td colspan="2" class="font-bold bg-gray-50">SABTU</td></tr>
+                                <tr><td>07:30-09:30</td><td>Sesi 1: "Ekspedisi Detektif Sekolah"</td></tr>
+                                <tr><td>09:30-12:00</td><td>Sesi 2: Bengkel "Dari Masalah Jadi Pertanyaan Emas"</td></tr>
+                                <tr><td>13:30-15:30</td><td>Sesi 3: "Google Fu & Pustaka Harta Karun"</td></tr>
+                                <tr><td>15:30-18:00</td><td>Sesi 4: "Peta Ide Penelitian"</td></tr>
+                                <tr><td>19:30-21:30</td><td>Malam Keakraban: "Api Unggun & Pentas Ide"</td></tr>
+                                <tr><td colspan="2" class="font-bold bg-gray-50">MINGGU</td></tr>
+                                <tr><td>08:00-10:00</td><td>Presentasi "Benih Penelitianku"</td></tr>
+                                <tr><td>10:00-11:00</td><td>Komitmen & Rencana Aksi Pertama</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            </div>
+
+            <div id="phase-2" class="bg-white p-6 rounded-lg shadow-md">
+                <h3 class="text-2xl font-bold mb-4 text-[#ff6361]">Tahap 2: Penelitian & Penulisan</h3>
+                <p class="mb-4">Siswa terjun ke lapangan untuk mengumpulkan data, menganalisis temuan, dan menuangkannya menjadi karya utuh. Aktivitas utamanya meliputi:</p>
+                 <ul class="space-y-2 mb-4 text-gray-700">
+                    <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><b>Pengumpulan, Pengolahan & Analisis Data</b></span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><b>Penyusunan Bab IV & V</b></span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><b>Finalisasi Naskah & Persiapan Seminar</b></span></li>
+                    <li class="flex items-start"><span class="text-green-500 mr-2">✔</span> <span><b>Ujian Seminar Hasil & Revisi</b></span></li>
+                </ul>
+                <div class="chart-container">
+                    <canvas id="phase2Chart"></canvas>
+                </div>
+            </div>
+
+            <div id="kemah-2" class="bg-white p-6 rounded-lg shadow-md flex flex-col">
+                 <h3 class="text-2xl font-bold mb-4 text-[#ffa600]">Sorotan: Kemah Ilmiah II</h3>
+                <p class="mb-4">"Menjadi Arsitek Data, Membangun Karya Nyata" - bootcamp yang berfokus pada keterampilan praktis pengumpulan dan analisis data.</p>
+                 <div class="space-y-3 mb-4">
+                    <div class="flex items-start"><span class="text-3xl mr-3">🎭</span><div><h4 class="font-semibold">Simulasi & Roleplay</h4><p class="text-sm">Berlatih menghadapi narasumber dan observasi.</p></div></div>
+                    <div class="flex items-start"><span class="text-3xl mr-3">📊</span><div><h4 class="font-semibold">Bengkel Analisis Data</h4><p class="text-sm">Praktik analisis data kuantitatif dan kualitatif.</p></div></div>
+                    <div class="flex items-start"><span class="text-3xl mr-3">🛡️</span><div><h4 class="font-semibold">Garda Etika Peneliti</h4><p class="text-sm">Membangun kesadaran etis di lapangan.</p></div></div>
+                </div>
+                 <details class="mt-auto">
+                    <summary class="inline-block bg-[#ffa600] text-white font-bold py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors w-full text-center">
+                        Lihat Rundown Rinci
+                    </summary>
+                    <div class="mt-4 overflow-x-auto">
+                        <table class="w-full text-sm rundown-table">
+                            <thead><tr><th>Waktu</th><th>Aktivitas</th></tr></thead>
+                            <tbody>
+                                <tr><td colspan="2" class="font-bold bg-gray-50">JUMAT</td></tr>
+                                <tr><td>19:30-21:00</td><td>Roleplay Lab: "Wawancara Sulit & Observasi Tajam"</td></tr>
+                                <tr><td>21:00-21:30</td><td>Jurnal Malam: "Kekhawatiranku di Lapangan"</td></tr>
+                                <tr><td colspan="2" class="font-bold bg-gray-50">SABTU</td></tr>
+                                <tr><td>07:30-09:30</td><td>Sesi 1: Bengkel "Resep Kuesioner Enak"</td></tr>
+                                <tr><td>09:30-12:00</td><td>Sesi 2: "Dari Angka Jadi Cerita" (Analisis Kuantitatif)</td></tr>
+                                <tr><td>13:30-15:30</td><td>Sesi 3: "Membongkar Makna di Balik Kata" (Analisis Kualitatif)</td></tr>
+                                <tr><td>15:30-17:00</td><td>Sesi 4: "Garda Etika Peneliti"</td></tr>
+                                <tr><td>19:30-21:30</td><td>Malam Strategi & Manajemen Proyek</td></tr>
+                                <tr><td colspan="2" class="font-bold bg-gray-50">MINGGU</td></tr>
+                                <tr><td>08:00-10:00</td><td>Gelar Rencana Aksi Lapangan & Simulasi</td></tr>
+                                <tr><td>10:00-11:00</td><td>Sesi Motivasi: "Menaklukkan Naga di Lapangan"</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </details>
+            </div>
+            
+            <div id="success-factors" class="md:col-span-2 bg-white p-6 rounded-lg shadow-md">
+                 <h3 class="text-2xl font-bold text-center mb-4 text-[#003f5c]">Fondasi Keberhasilan Proyek</h3>
+                 <p class="text-center max-w-3xl mx-auto mb-6">Keberhasilan proyek ini ditopang oleh beberapa pilar fundamental yang saling mendukung, mulai dari komitmen institusional hingga motivasi intrinsik siswa.</p>
+                 <div class="chart-container h-[400px] md:h-96 max-h-[450px]">
+                    <canvas id="successFactorsChart"></canvas>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="text-center p-6 mt-8 bg-[#003f5c] text-white">
+        <p>&copy; 2025 SMP YPS SINGKOLE. Membangun Generasi Peneliti Masa Depan.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            const colorPalette = {
+                primary: '#003f5c',
+                secondary: '#58508d',
+                tertiary: '#bc5090',
+                accent1: '#ff6361',
+                accent2: '#ffa600'
+            };
+
+            const fontConfig = {
+                color: '#374151',
+                font: {
+                    family: 'Inter, sans-serif'
+                }
+            };
+            
+            function wrapLabel(str, maxWidth) {
+                if (str.length <= maxWidth) {
+                    return str;
+                }
+                const words = str.split(' ');
+                let lines = [];
+                let currentLine = words[0];
+
+                for (let i = 1; i < words.length; i++) {
+                    if ((currentLine + " " + words[i]).length > maxWidth) {
+                        lines.push(currentLine);
+                        currentLine = words[i];
+                    } else {
+                        currentLine += " " + words[i];
+                    }
+                }
+                lines.push(currentLine);
+                return lines;
+            }
+
+            const tooltipTitleCallback = function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                  return label.join(' ');
+                } else {
+                  return label;
+                }
+            };
+
+            const commonTooltipOptions = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: tooltipTitleCallback
+                        }
+                    }
+                }
+            };
+            
+            if (document.getElementById('phase1Chart')) {
+                new Chart(document.getElementById('phase1Chart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Penyusunan Bab I', 'Penyusunan Bab II', 'Penyusunan Bab III & Instrumen'],
+                        datasets: [{
+                            data: [35, 30, 35],
+                            backgroundColor: [colorPalette.secondary, colorPalette.tertiary, colorPalette.accent1],
+                            borderColor: '#ffffff',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: fontConfig
+                            },
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        }
+                    }
+                });
+            }
+
+            if (document.getElementById('phase2Chart')) {
+                new Chart(document.getElementById('phase2Chart'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Pengumpulan & Analisis Data', 'Penyusunan Bab IV & V', 'Finalisasi & Ujian'],
+                        datasets: [{
+                            data: [40, 35, 25],
+                            backgroundColor: [colorPalette.accent1, colorPalette.accent2, colorPalette.primary],
+                            borderColor: '#ffffff',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                         plugins: {
+                            legend: {
+                                position: 'bottom',
+                                labels: fontConfig
+                            },
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        }
+                    }
+                });
+            }
+
+            if (document.getElementById('successFactorsChart')) {
+                 const successLabels = [
+                    'Komitmen Sekolah',
+                    'Kapasitas Guru Pembimbing',
+                    'Sumber Belajar Memadai',
+                    'Sistem Penilaian Jelas',
+                    'Motivasi Intrinsik Siswa'
+                ].map(label => wrapLabel(label, 18));
+
+                new Chart(document.getElementById('successFactorsChart'), {
+                    type: 'bar',
+                    data: {
+                        labels: successLabels,
+                        datasets: [{
+                            label: 'Tingkat Kepentingan',
+                            data: [100, 100, 95, 95, 100],
+                            backgroundColor: [
+                                colorPalette.primary, 
+                                colorPalette.secondary, 
+                                colorPalette.tertiary, 
+                                colorPalette.accent1, 
+                                colorPalette.accent2
+                            ],
+                            borderRadius: 4
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            x: {
+                                beginAtZero: true,
+                                grid: { display: false },
+                                ticks: { display: false }
+                            },
+                            y: {
+                                grid: { display: false },
+                                ticks: fontConfig
+                            }
+                        },
+                        plugins: {
+                            legend: {
+                                display: false
+                            },
+                            tooltip: commonTooltipOptions.plugins.tooltip
+                        }
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+
+
